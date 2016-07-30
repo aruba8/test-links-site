@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test task</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <div class="container">
+    <div class="page-header">
+      <h1>Test task</h1>
+    </div>
+        <div class="jumbotron">
+
+            <ul id="links">
+                <li><h3><a href="http://google.ca">Link #1</a></h3></li>
+                <li><h3><a href="/test">Link #2</a></h3></li>
+                <li><h3><a href="/testurl">Link #3</a></h3></li>
+                <li><a type="button" class="btn btn-default btn-lg" href="/testbtn">Link #4</a></li>
+                <li><button id="buttondis" type="button" disabled class="btn btn-default btn-lg">Link #5</button></li>
+                <!-- <li><button type="button" disabled class="btn btn-default btn-lg" href="/btncom">Link #6</button></li> -->
+                {% if flag %}
+                <li><h3><a href="/secreturl">Link #8</a></h3></li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var trueurl = "hiddenurl";
+            var isIE = /*@cc_on!@*/false || !!document.documentMode;
+            var isFirefox = typeof InstallTrigger !== 'undefined';
+            if (isIE){
+                $('#links').append('<li><h3><a href="/'+trueurl+'">Link #7</a></h3></li>');
+            }
+
+            $('#buttondis').click(function(e){
+                $.ajax({
+                    type: "GET",
+                    url: "/testbtnd"
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
